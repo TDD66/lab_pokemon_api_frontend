@@ -1,14 +1,14 @@
 import Pokemon from "./Pokemon";
 
-const PokemonListContainer = ({pokemons}) => {
+const PokemonListContainer = ({pokemons, title, handleCapture, buttonLabel}) => {
 
     const pokemonComponents = pokemons.map(pokemon=>{
-        return <Pokemon key={pokemon.id} pokemon={pokemon} />
+        return <Pokemon key={pokemon.id} pokemon={pokemon} handleCapture={handleCapture} buttonLabel={buttonLabel}/>
 
     })
     return (  
         <>
-            <h2>Hello from Pokemon List Container!</h2>
+            <h2>{title}</h2>
             {pokemonComponents}
         </>
     );
