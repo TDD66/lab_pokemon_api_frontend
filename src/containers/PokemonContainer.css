@@ -2,3 +2,21 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
 }
+
+h1 {
+    text-align: center;
+    color: #113f67;
+    padding-top: 40px;
+  }
+
+/* Ensures the lists are formatted nicely in the middle of the page */
+.my-pokemon, .pokemon-lists {
+    /* text-align: center; */
+    width: 70%;
+    padding-left: 130px;
+}
+/* Search form styling */
+.form{
+    width: 53%;
+    text-align: center;
+}

@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import "./Pokemon.css";
 
 const Pokemon = ({pokemon, handleCapture, buttonLabel}) => {
 
@@ -26,7 +27,7 @@ const Pokemon = ({pokemon, handleCapture, buttonLabel}) => {
 
     const capitalizedName = pokemon.name.charAt(0).toUpperCase() + pokemon.name.substring(1);
     return (  
-        <>
+        < div className="pokemon">
             <h3>{capitalizedName}</h3>
             <img src={pokemon.sprites.front_default} alt="" />
             <ul>{types}</ul>
@@ -35,7 +36,7 @@ const Pokemon = ({pokemon, handleCapture, buttonLabel}) => {
             <p>Base Stat: {baseStat}</p>
             <button onClick={handleClick}>{buttonLabel}</button>
             <button onClick={handleUpgrade}>Upgrade</button>
-        </>
+        </div>
     );
 }
  

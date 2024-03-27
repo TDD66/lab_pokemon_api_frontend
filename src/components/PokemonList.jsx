@@ -1,4 +1,5 @@
 import Pokemon from "./Pokemon";
+import "./PokemonList.css";
 
 const PokemonListContainer = ({pokemons, title, handleCapture, buttonLabel}) => {
 
@@ -9,8 +10,10 @@ const PokemonListContainer = ({pokemons, title, handleCapture, buttonLabel}) => 
     return (  
         <>
             <h2>{title}</h2>
+            <div className="list">
             {pokemonComponents}
-        </>
+        </div>
+    </>
     );
 }
  

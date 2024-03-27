@@ -10,7 +10,7 @@ const PokemonContainer = () => {
     const [filteredPokemons, setFilteredPokemons] = useState([]);
 
     const fetchPokemons = async () => {
-        const response = await fetch("https://pokeapi.co/api/v2/pokemon?limit=10");
+        const response = await fetch("https://pokeapi.co/api/v2/pokemon?limit=151");
         const pokemonData = await response.json();
 
         const pokemonRequests = pokemonData.results.map(async (pokemon) => {
@@ -86,9 +86,7 @@ const PokemonContainer = () => {
     const filterPokemon = async(searchTerm) => {
         const response = await fetch("https://pokeapi.co/api/v2/pokemon/" + searchTerm);
         const filteredJsonData = await response.json();
-        // if()
         setFilteredPokemons([filteredJsonData]);
-        // console.log(filteredPokemons);
     }
 
     const whichList = () => {
@@ -104,6 +102,7 @@ const PokemonContainer = () => {
         <>
             <h1>Gen 1 Pokemon!</h1>
             <PokemonSearchForm setFilteredPokemons={setFilteredPokemons} filterPokemon={filterPokemon}/>
+            <main>
             <div className="pokemon-lists">
                 <div className="all-pokemon">
                     {whichList()}
@@ -112,6 +111,7 @@ const PokemonContainer = () => {
                     <PokemonList pokemons={myPokemons} title="My Team" handleCapture={handleCapture} buttonLabel="Release"/>
                 </div>
             </div>
+            </main>
         </>
     );
 }
