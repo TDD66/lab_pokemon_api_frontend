@@ -12,8 +12,7 @@ const PokemonSearchForm = ({setFilteredPokemons, filterPokemon}) => {
             if(searchTerm && searchTerm !==' '){
                 filterPokemon(searchTerm);
             }
-            // setFilteredPokemons(null);
-    
+            setFilteredPokemons([]);
         }
 
     return ( 

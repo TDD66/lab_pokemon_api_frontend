@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import PokemonList from "../components/PokemonList";
 import PokemonSearchForm from "../components/PokemonSearchForm";
+import "./PokemonContainer.css";
 
 const PokemonContainer = () => {
 
@@ -30,6 +31,9 @@ const PokemonContainer = () => {
 
     const handleCapture = (pokemon) => {
         if(pokemons.includes(pokemon) || filteredPokemons.includes(pokemon)){
+            if(myPokemons.length >= 6){
+                return alert("Your team is full!!!");
+            }
             capturePokemon(pokemon);
         } else {
             releasePokemon(pokemon);
@@ -40,6 +44,7 @@ const PokemonContainer = () => {
            
         if(filteredPokemons){
             removePokemonFromFilteredList(wildPokemon);
+            removePokemonFromMainList(wildPokemon);
         }
         if(pokemons){
             removePokemonFromMainList(wildPokemon);
@@ -81,6 +86,7 @@ const PokemonContainer = () => {
     const filterPokemon = async(searchTerm) => {
         const response = await fetch("https://pokeapi.co/api/v2/pokemon/" + searchTerm);
         const filteredJsonData = await response.json();
+        // if()
         setFilteredPokemons([filteredJsonData]);
         // console.log(filteredPokemons);
     }
@@ -98,12 +104,13 @@ const PokemonContainer = () => {
         <>
             <h1>Gen 1 Pokemon!</h1>
             <PokemonSearchForm setFilteredPokemons={setFilteredPokemons} filterPokemon={filterPokemon}/>
-            <div className="all-pokemons">
-                {whichList()}
-            </div>
-            <div className="my-pokemons">
-            <PokemonList pokemons={myPokemons} title="My Team" handleCapture={handleCapture} buttonLabel="Release"/>
-            
+            <div className="pokemon-lists">
+                <div className="all-pokemon">
+                    {whichList()}
+                </div>
+                <div className="my-pokemon">
+                    <PokemonList pokemons={myPokemons} title="My Team" handleCapture={handleCapture} buttonLabel="Release"/>
+                </div>
             </div>
         </>
     );
