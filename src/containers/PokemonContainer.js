@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import PokemonListContainer from "../components/PokemonList";
+import PokemonList from "../components/PokemonList";
 
 const PokemonContainer = () => {
 
@@ -16,7 +16,7 @@ const PokemonContainer = () => {
 
         Promise.all(pokemonRequests)
         .then((results) => {
-            console.log(results);
+            setPokemons(results)
         });
     }
 
@@ -27,7 +27,7 @@ const PokemonContainer = () => {
     return (  
         <>
             <h1>Hello from Pokemon Container!</h1>
-            <PokemonListContainer />
+            <PokemonList pokemons={pokemons}/>
         </>
     );
 }
