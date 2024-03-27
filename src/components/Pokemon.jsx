@@ -7,10 +7,10 @@ const Pokemon = ({pokemon, handleCapture, buttonLabel}) => {
     const handleClick = () => {
         handleCapture(pokemon);
     }
-
+    const capitalizedName =    pokemon.name.charAt(0).toUpperCase() + pokemon.name.substring(1);
     return (  
         <>
-            <h3>{pokemon.name}</h3>
+            <h3>{capitalizedName}</h3>
             <img src={pokemon.sprites.front_default} alt="" />
             <ul>{types}</ul>
             <p>Height: {pokemon.height*10}cm</p>

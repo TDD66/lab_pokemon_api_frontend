@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import PokemonList from "../components/PokemonList";
+import PokemonSearchForm from "../components/PokemonSearchForm";
 
 const PokemonContainer = () => {
 
@@ -77,15 +78,32 @@ const PokemonContainer = () => {
         };
     }
 
+    const filterPokemon = async(searchTerm) => {
+        const response = await fetch("https://pokeapi.co/api/v2/pokemon/" + searchTerm);
+        const filteredJsonData = await response.json();
+        setFilteredPokemons([filteredJsonData]);
+        // console.log(filteredPokemons);
+    }
+
+    const whichList = () => {
+        if(filteredPokemons != 0){
+            return <PokemonList pokemons={filteredPokemons} title="(Filtered) Wild Pokemon" handleCapture={handleCapture} buttonLabel="Capture"/>
+           
+        } else { 
+            return  <PokemonList pokemons={pokemons} title="Wild Pokemon" handleCapture={handleCapture} buttonLabel="Capture"/>
+        }
+    }
+
     return (  
         <>
-            <h1>Hello from Pokemon Container!</h1>
+            <h1>Gen 1 Pokemon!</h1>
+            <PokemonSearchForm setFilteredPokemons={setFilteredPokemons} filterPokemon={filterPokemon}/>
             <div className="all-pokemons">
-            <PokemonList pokemons={pokemons} title="All Pokemons" handleCapture={handleCapture} buttonLabel="Capture"/>
+                {whichList()}
             </div>
-            
             <div className="my-pokemons">
-                <PokemonList pokemons={myPokemons} title="My Team" handleCapture={handleCapture} buttonLabel="Release"/>
+            <PokemonList pokemons={myPokemons} title="My Team" handleCapture={handleCapture} buttonLabel="Release"/>
+            
             </div>
         </>
     );
